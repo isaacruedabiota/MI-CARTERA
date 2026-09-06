@@ -1,0 +1,27 @@
+# Secretos y configuracion local
+.env
+.env.local
+
+# Entorno virtual y cache de Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Base de datos y datos locales
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# Sistema, logs y editores
+.DS_Store
+Thumbs.db
+*.log
+logs/
+.idea/
+.vscode/

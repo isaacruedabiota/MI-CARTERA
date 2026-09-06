@@ -1,0 +1,24 @@
+[Unit]
+Description=Por que se mueve mi cartera (web)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=isaac
+Group=isaac
+WorkingDirectory=/home/isaac/cartera
+# El .env lo lee la propia app (python-dotenv), no hace falta EnvironmentFile.
+ExecStart=/home/isaac/cartera/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1
+Restart=on-failure
+RestartSec=10
+
+# Endurecimiento basico
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/isaac/cartera/data
+
+[Install]
+WantedBy=multi-user.target

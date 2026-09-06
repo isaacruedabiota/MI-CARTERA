@@ -1,0 +1,19 @@
+[Unit]
+Description=Job diario de la cartera (precios + noticias + explicacion)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=isaac
+Group=isaac
+WorkingDirectory=/home/isaac/cartera
+ExecStart=/home/isaac/cartera/.venv/bin/python scripts/run_job.py
+# El job puede tardar si se usa Ollama local en la Pi.
+TimeoutStartSec=1800
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/isaac/cartera/data

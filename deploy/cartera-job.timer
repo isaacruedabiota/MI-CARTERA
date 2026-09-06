@@ -1,0 +1,14 @@
+[Unit]
+Description=Lanza el job de la cartera de lunes a viernes por la noche
+
+[Timer]
+# 22:30 hora local, solo dias de mercado. Ajusta a tu gusto.
+OnCalendar=Mon..Fri 22:30
+# Segundo pase: rellena lo que fallara (p. ej. un 429 de Yahoo). El job no
+# sobrescribe los datos buenos que ya haya guardado, asi que repetirlo es seguro.
+OnCalendar=Mon..Fri 23:30
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

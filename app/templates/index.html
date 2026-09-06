@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Por que se mueve mi cartera</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Por que se mueve mi cartera</h1>
+      <p class="sub">Explicaciones en lenguaje sencillo de los movimientos de tus activos.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <p class="disclaimer">
+      <strong>Esto no es asesoramiento financiero.</strong> Es un resumen automatico
+      generado por un modelo de IA a partir de titulares publicos: puede estar
+      incompleto o ser erroneo. No tomes decisiones de inversion basandote en esta pagina.
+    </p>
+
+    <details class="panel" id="portfolio-panel">
+      <summary>Mi cartera <span id="ticker-count" class="tag"></span></summary>
+
+      <form id="add-form" class="add-form" autocomplete="off" role="search">
+        <input id="ticker-input" type="text"
+               placeholder="Busca por nombre, ticker o ISIN: Apple, SAN.MC, IE000BI8OT95…"
+               maxlength="60" aria-label="Buscar valor" aria-controls="results"
+               aria-autocomplete="list">
+        <button type="submit" id="add-btn">Buscar</button>
+      </form>
+      <p class="hint">
+        Escribe el nombre de la empresa o del fondo y elige el mercado correcto en
+        los resultados, que muestran lo que ha hecho el valor el ultimo dia.
+        Tambien vale un ticker de Yahoo o el ISIN de tu broker. Solo aparecen los
+        que tienen datos de precio: lo que no se pueda seguir, no se ofrece.
+        <strong>Fijate en la divisa</strong>: un mismo fondo cotiza en varios
+        mercados y no siempre en euros.
+      </p>
+      <p id="add-msg" class="add-msg" hidden></p>
+
+      <ul id="results" class="results" hidden></ul>
+
+      <ul id="ticker-list" class="ticker-list"></ul>
+      <p class="hint">
+        Con <strong>Renombrar</strong> cambias el codigo de mercado por la
+        etiqueta que tu quieras (de <code>MWRD.PA</code> a <code>MSCI World</code>).
+        El codigo real se sigue viendo en pequeno al lado. El listado solo muestra
+        los valores que tienes ahora mismo en la cartera.
+      </p>
+    </details>
+
+    <div class="toolbar">
+      <label for="day-select">Dia</label>
+      <select id="day-select"></select>
+      <button id="refresh-btn" type="button">Actualizar ahora</button>
+      <span id="status" class="status"></span>
+    </div>
+
+    <p class="meta" id="meta"></p>
+
+    <div class="legend">
+      <span>Resultado del analisis:</span>
+      <span class="tag st-ok">Explicado</span>
+      <span class="tag st-nocause">Sin causa clara</span>
+      <span class="tag st-nonews">Sin noticias</span>
+      <span class="tag st-flat">Movimiento pequeno</span>
+      <span class="tag st-none">No disponible</span>
+    </div>
+
+    <main id="list" class="list">
+      <p class="empty">Cargando…</p>
+    </main>
+
+    <footer class="foot">
+      <p>
+        Precios: Yahoo Finance / Stooq. Noticias: Yahoo Finance y Google News RSS.
+        Umbral de movimiento relevante: <strong>{{ threshold }}%</strong>.
+      </p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

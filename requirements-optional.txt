@@ -1,0 +1,5 @@
+# Opcional. Aporta una via alternativa de precios (gestiona cookie+crumb de
+# Yahoo) y noticias asociadas al ticker. Arrastra pandas y numpy: en una
+# Raspberry Pi son ~150 MB y varios minutos de instalacion. La app funciona
+# perfectamente sin esto.
+yfinance==0.2.54
